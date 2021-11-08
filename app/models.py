@@ -9,14 +9,14 @@ from datetime import datetime
 def load_user(user_id):
     return User.query.get(int(user_id))
     
-class pitch(db.Model):
+class Pitch(db.Model):
     tablename = 'pitches'
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(255))
     category = db.Column(db.String)
     comment = db.Column(db.Text)
     date_posted = db.Column(db.DateTime, default=datetime.utcnow)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     comment = db.relationship('Comment', backref='pitch', lazy='dynamic')
     
 
@@ -73,5 +73,5 @@ class User(UserMixin,db.Model):
     def verify_password(self,password):
         return check_password_hash(self.pass_secure,password)
     def _repr_(self):
-        return f'User {self.username}'
+        return f'Users {self.username}'
         

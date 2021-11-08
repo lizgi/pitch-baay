@@ -1,0 +1,20 @@
+{% extends 'base.html'%}
+{% import 'macros.html' as macro %}
+
+{% block styles%}
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid text-center">
+        <h1> Welcome To Pitch Bay</h1>
+
+       
+       
+
+</div>
+
+
+{% endblock%}

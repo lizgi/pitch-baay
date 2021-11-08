@@ -1,6 +1,6 @@
 from flask import render_template,request,redirect,url_for,abort, flash
 from . import main
-from ..models import Comment, User,pitch
+from ..models import Comment, User,Pitch
 from flask_login import login_required
 from .. import db,photos
 from .forms import UpdateProfile, PitchForm, CommentForm
@@ -11,7 +11,7 @@ def index():
     View root page function that returns the index page and its data.
     '''
     pitch_form = PitchForm()
-    all_pitches = pitch.query.order_by(pitch.date_posted).all()
+    all_pitches = Pitch.query.order_by(Pitch.date_posted).all()
     return render_template('index.html', pitch = all_pitches)
 
 @main.route('/user/<uname>')
@@ -35,7 +35,7 @@ def update_profile(uname):
         return redirect(url_for('.profile',uname=user.username))
     return render_template('profile/update.html',form =form)
 
-    
+
 @main.route('/user/<uname>/update/pic',methods= ['POST'])
 @login_required
 def update_pic(uname):

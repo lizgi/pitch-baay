@@ -1,0 +1,24 @@
+{% extends 'bootstrap/base.html'%}
+
+{% block navbar %}
+    {% include 'navbar.html' %}
+{% endblock %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        {% if title %}
+        <title> {{ title }}</title>
+        {% else %}
+        <title> Pitch Bay</title>
+        {% endif %}
+    </head>
+    
+    <body>
+
+        {% block content %}
+
+        {% endblock%}
+    </body>
+</html>
