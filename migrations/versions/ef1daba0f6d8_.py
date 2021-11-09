@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 80073c08f827
+Revision ID: ef1daba0f6d8
 Revises: 
-Create Date: 2021-11-09 17:52:42.971947
+Create Date: 2021-11-09 20:06:23.075703
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '80073c08f827'
+revision = 'ef1daba0f6d8'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -39,6 +39,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(length=255), nullable=True),
     sa.Column('category', sa.String(), nullable=True),
+    sa.Column('content', sa.Text(), nullable=True),
     sa.Column('date_pitched', sa.DateTime(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
@@ -56,8 +57,8 @@ def upgrade():
     op.create_table('downvote',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
-    sa.Column('pitc_id', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['pitc_id'], ['pitch.id'], ),
+    sa.Column('pitch_id', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['pitch_id'], ['pitch.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

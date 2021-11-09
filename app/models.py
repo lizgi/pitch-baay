@@ -13,15 +13,17 @@ class Pitch(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(255))
     category = db.Column(db.String)
-    comment = db.Column(db.Text)
+    content = db.Column(db.Text)
     date_pitched = db.Column(db.DateTime, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     comment = db.relationship('Comment', backref='pitch', lazy='dynamic')
-    
+    upvote = db.relationship('Upvote',backref='pitch',lazy='dynamic')
+    downvote = db.relationship('Downvote',backref='pitch',lazy='dynamic')
 
     def save_pitch(self):
         db.session.add(self)
         db.session.commit()
+
     def repr(self):
         return f'Pitch {self.title}'
 
@@ -118,7 +120,7 @@ class Downvote(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    pitc_id = db.Column(db.Integer, db.ForeignKey('pitch.id'))
+    pitch_id = db.Column(db.Integer, db.ForeignKey('pitch.id'))
 
     def save(self):
         db.session.add(self)

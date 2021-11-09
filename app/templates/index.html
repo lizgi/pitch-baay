@@ -11,7 +11,7 @@
 <div class="container-fluid">
     <h1 class="text-center"> Welcome To Pitch Bay</h1>
     <div class="row">
-        {% for pitch in pitchs %}
+        {% for pitch in pitches %}
         <div class="col-md-4">
             <div class="panel panel-default ">
                 <div class="panel-heading text-center">
@@ -24,15 +24,15 @@
                     <p>pitched by : {{pitch.user.username}}</p>
                 </div>
                 <div class="panel-footer">
-                    <a href="{{ url_for('main.pitch_details', id = pitch.id)}}"><button class="btn-success">Add a
+                    <a href="{{ url_for('main.pitch_details', id = pitch.id)}}"><button class="btn-primary">Add a
                             comment</button></a>
 
 
                     <div class="col-md-4 upvote">
-                        <span class="foot"> <a href="{{url_for('main.like',id = pitch.id)}}"><button class="btn-success">Upvotes:{{pitch.upvote.count()}}</button></a></span>
+                        <span class="foot"> <a href="{{url_for('main.like',id = pitch.id)}}"><button class="btn-primary">Upvotes:{{pitch.upvote.count()}}</button></a></span>
                     </div>
                     <div class="col-md-4 downvote">
-                        <span class="foot"> <a href="{{url_for('main.dislike',id = pitch.id)}}"> <button class="btn-danger">Downvotes:{{pitch.downvote.count()}}</button></a></span>
+                        <span class="foot"> <a href="{{url_for('main.dislike',id = pitch.id)}}"> <button class="btn-info">Downvotes:{{pitch.downvote.count()}}</button></a></span>
                     </div>
                 </div>
 

@@ -1,5 +1,7 @@
-{% macro displayPitches(pitch_list) %} 
-
-
-
+{% macro displayComments(comments_list) %}
+    {% for comment in comments_list %}
+    <div class="comments">
+        {{ comment.comment }}
+    </div>
+    {% endfor %}
 {% endmacro %}
