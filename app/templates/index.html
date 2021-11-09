@@ -2,19 +2,47 @@
 {% import 'macros.html' as macro %}
 
 {% block styles%}
-    {{ super() }}
-    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+{{ super() }}
+<link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}">
 {% endblock %}
 
 {% block content %}
 
-<div class="container-fluid text-center">
-        <h1> Welcome To Pitch Bay</h1>
+<div class="container-fluid">
+    <h1 class="text-center"> Welcome To Pitch Bay</h1>
+    <div class="row">
+        {% for pitch in pitchs %}
+        <div class="col-md-12">
+            <div class="panel panel-default ">
+                <div class="panel-heading text-center">
+                    <h5>Title : {{ pitch.title }}</h5>
+                </div>
+                <div class="panel-body text-start">
+                    <h5>Category : {{ pitch.category }}</h5>
+                    <h5>Content : {{ pitch.content }}</h5>
+                    <p>pitched on : {{pitch.date_pitched.strftime('%Y-%m-%d')}}</p>
+                    <p>pitched by : {{pitch.user.username}}</p>
+                </div>
+                <div class="panel-footer">
+                    <a href="{{ url_for('main.pitch_details', id = pitch.id)}}"><button class="btn-success">Add a
+                            comment</button></a>
 
-       
-       
 
-</div>
+                    <div class="col-md-4 upvote">
+                        <span class="foot"> <a href="{{url_for('main.like',id = pitch.id)}}"><button class="btn-success">Upvotes:{{pitch.upvote.count()}}</button></a></span>
+                    </div>
+                    <div class="col-md-4 downvote">
+                        <span class="foot"> <a href="{{url_for('main.dislike',id = pitch.id)}}"> <button class="btn-danger">Downvotes:{{pitch.downvote.count()}}</button></a></span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        {% endfor %}
+
+    </div>
 
 
-{% endblock%}
+    {% endblock%}
+    
