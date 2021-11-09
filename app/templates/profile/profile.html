@@ -1,11 +1,16 @@
 {% extends 'base.html'%}
+{% import 'macros.html' as macro %}
+
+{% block styles%}
+{{ super() }}
+<link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}">
+{% endblock %}
 {% block content %}
 <div class="container">
 <div class="row">
-<!-- displaying  Username-->
   <div class="col-md-4">
     <h3> {{user.username| capitalize}} </h3>
-    <!--Displaying user bio-->
+
     {% if user.bio %}
       <p> {{user.bio}}</p>
     {%else%}
