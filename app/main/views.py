@@ -11,8 +11,8 @@ def index():
     View root page function that returns the index page and its data.
     '''
     pitch_form = PitchForm()
-    all_pitches = Pitch.query.order_by(Pitch.date_posted).all()
-    return render_template('index.html', pitch = all_pitches)
+    all_pitches = Pitch.query.order_by(Pitch.date_pitched).all()
+    return render_template('index.html', pitches = all_pitches)
 
 @main.route('/user/<uname>')
 def profile(uname):
@@ -148,4 +148,3 @@ def dislike(id):
     db.session.commit()
     flash('You have successfully downvoted the pitch!')
     return redirect(url_for('.index')) 
-       
